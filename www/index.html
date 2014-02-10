@@ -1,82 +1,82 @@
 <!DOCTYPE html>
 <html ng-app="touchApp">
 <!-- made by @armno -->
-	<head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <title>ngTouch testing</title>
-				<style>
-				button {
-					display: block;
-					border: 0;
-					padding: 1rem 0;
-					text-align: center;
-					background-color: #2980B9;
-					color: white;
-					font-size: 2rem;
-					width: 100%;
-					margin-bottom: 0.5rem;
-				}
+  <head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <title>ngTouch testing</title>
+    <style>
+    button {
+      display: block;
+      border: 0;
+      padding: 1rem 0;
+      text-align: center;
+      background-color: #2980B9;
+      color: white;
+      font-size: 2rem;
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
 
-				button:hover,
-				button:active {
-					background-color: #3498DB;
-				}
+    button:hover,
+    button:active {
+      background-color: #3498DB;
+    }
 
-				.box {
-					width: 100%;
-					height: 300px;
-					background: #a00;
-					transition: all 0.3s ease-out;
-				}
-				.box.active {
-					height: 0;
-				}
+    .box {
+      width: 100%;
+      height: 300px;
+      background: #a00;
+      transition: all 0.3s ease-out;
+    }
+    .box.active {
+      height: 0;
+    }
 
-				.box.left {
-					background: #2ECC71;
-				}
+    .box.left {
+      background: #2ECC71;
+    }
 
-				.box.right {
-					background: #E67E22;
-				}
-				</style>
-    </head>
-    <body>
-			  <div ng-controller="MainCtrl">
-					<button ng-click="active = !active">BUTTON</button>
+    .box.right {
+      background: #E67E22;
+    }
+    </style>
+  </head>
+  <body>
+      <div ng-controller="MainCtrl">
+      <button ng-click="active = !active">BUTTON</button>
 
-					<div class="box"
-						ng-class="{ 'active': active, 'left': left, 'right': right }"
-						ng-swipe-left="swipe('left')"
-						ng-swipe-right="swipe('right')"
-						ng-click="reset()">
-					{{ touched }}
-					</div>
-				</div>
-        <script type="text/javascript" src="cordova.js"></script>
-				<script src="bower_components/angular/angular.js"></script>
-				<script src="bower_components/angular-touch/angular-touch.js"></script>
-		<script>
-		var touchApp = angular.module('touchApp', ['ngTouch']);
-		touchApp.controller('MainCtrl', ['$scope', function($scope) {
-			$scope.swipe = function(direction) {
-				if (direction === 'left') {
-					$scope.left = true;
-					$scope.right = false;
-				} else {
-					$scope.left = false;
-					$scope.right = true;
-				}
-			};
+      <div class="box"
+        ng-class="{ 'active': active, 'left': left, 'right': right }"
+        ng-swipe-left="swipe('left')"
+        ng-swipe-right="swipe('right')"
+        ng-click="reset()">
+      {{ touched }}
+      </div>
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+  <script>
+    var touchApp = angular.module('touchApp', ['ngTouch']);
+    touchApp.controller('MainCtrl', ['$scope', function($scope) {
+      $scope.swipe = function(direction) {
+        if (direction === 'left') {
+          $scope.left = true;
+          $scope.right = false;
+        } else {
+          $scope.left = false;
+          $scope.right = true;
+        }
+      };
 
-			$scope.reset = function() {
-				$scope.left = false;
-				$scope.right = false;
-			};
-		}]);
-		</script>
+      $scope.reset = function() {
+        $scope.left = false;
+        $scope.right = false;
+      };
+    }]);
+    </script>
     </body>
 </html>
