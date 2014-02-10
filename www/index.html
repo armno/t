@@ -27,12 +27,20 @@
 
 				.box {
 					width: 100%;
-					height: 0;
+					height: 300px;
 					background: #a00;
 					transition: all 0.3s ease-out;
 				}
 				.box.active {
-					height: 300px;
+					height: 0;
+				}
+
+				.box.left {
+					background: #2ECC71;
+				}
+
+				.box.right {
+					background: #E67E22;
 				}
 				</style>
     </head>
@@ -40,7 +48,11 @@
 			  <div ng-controller="MainCtrl">
 					<button ng-click="active = !active">BUTTON</button>
 
-					<div class="box" ng-class="{ 'active': active }">
+					<div class="box"
+						ng-class="{ 'active': active, 'left': left, 'right': right }"
+						ng-swipe-left="swipe('left')"
+						ng-swipe-right="swipe('right')"
+						ng-click="reset()">
 					{{ touched }}
 					</div>
 				</div>
@@ -50,6 +62,20 @@
 		<script>
 		var touchApp = angular.module('touchApp', ['ngTouch']);
 		touchApp.controller('MainCtrl', ['$scope', function($scope) {
+			$scope.swipe = function(direction) {
+				if (direction === 'left') {
+					$scope.left = true;
+					$scope.right = false;
+				} else {
+					$scope.left = false;
+					$scope.right = true;
+				}
+			};
+
+			$scope.reset = function() {
+				$scope.left = false;
+				$scope.right = false;
+			};
 		}]);
 		</script>
     </body>
