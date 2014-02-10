@@ -1,14 +1,10 @@
 var gulp = require('gulp');
+var exec = require('gulp-exec');
 
-// run `cordova prepare` command
 gulp.task('prepare', function() {
-	console.log('preparing files');
+	gulp.src('.')
+		.pipe(exec('cordova prepare ios', { silent: true }));
 });
-
-gulp.task('default', function() {
-	// run cordova prepare when start gulp
-	gulp.run('prepare');
-	gulp.watch('www/**/*', function() {
-		gulp.run('prepare');
-	});
+gulp.task('watch', function() {
+	gulp.watch('www/**/*', ['prepare']);
 });
